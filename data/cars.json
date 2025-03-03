@@ -1,0 +1,18 @@
+[
+    {
+        "make": "Toyota",
+        "model": "Corolla",
+        "year": 2022,
+        "fuelType": "Gasoline",
+        "imageUrl": "images/corolla.jpg",
+        "review": "Reliable and fuel-efficient. A great choice!"
+    },
+    {
+        "make": "Tesla",
+        "model": "Model 3",
+        "year": 2023,
+        "fuelType": "Electric",
+        "imageUrl": "images/model3.jpg",
+        "review": "A fantastic EV with cutting-edge technology."
+    }
+]
