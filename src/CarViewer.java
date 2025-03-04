@@ -18,6 +18,12 @@ public class CarViewer {
     private List<Vehicle> originalVehicles; // Backup for search reset
     private int currentIndex = 0;
 
+     /**
+     * Initializes the CarViewer GUI and sets up components including 
+     * the frame, navigation buttons, search functionality, and sorting.
+     * 
+     * @param vehicles List of Vehicle objects to be displayed.
+     */
     public CarViewer(List<Vehicle> vehicles) {
         this.vehicles = vehicles;
         this.originalVehicles = new ArrayList<>(vehicles); // Backup the original list
@@ -80,6 +86,12 @@ public class CarViewer {
         frame.setVisible(true);
     }
 
+    /**
+    * Displays the details of the car at the specified index.
+    * Updates the text area with vehicle details and loads the image.
+    *
+    * @param index The index of the car in the vehicles list.
+    */
     private void showCarDetails(int index) {
         if (vehicles.isEmpty()) {
             carDetails.setText("No vehicles available.");
@@ -101,6 +113,10 @@ public class CarViewer {
         }
     }
 
+    /**
+    * Displays the next car in the list.
+    * Updates the UI if there is a next car available.
+    */
     private void showNextCar() {
         if (currentIndex < vehicles.size() - 1) {
             currentIndex++;
@@ -108,6 +124,10 @@ public class CarViewer {
         }
     }
 
+    /**
+    * Displays the previous car in the list.
+    * Updates the UI if there is a previous car available.
+    */
     private void showPreviousCar() {
         if (currentIndex > 0) {
             currentIndex--;
@@ -115,6 +135,10 @@ public class CarViewer {
         }
     }
 
+    /**
+    * Filters the vehicle list based on the search query entered by the user.
+    * If the search field is empty, it resets the list to its original state.
+    */
     private void searchCars() {
         String query = searchField.getText().trim().toLowerCase();
 
@@ -143,6 +167,11 @@ public class CarViewer {
         }
     }
 
+    /**
+    * Sorts the list of vehicles based on the selected sorting option.
+    * Sorting options include sorting by make and by year.
+    * After sorting, the first vehicle in the sorted list is displayed.
+    */
     private void sortCars() {
         // Restore full list before sorting
         vehicles = new ArrayList<>(originalVehicles);
