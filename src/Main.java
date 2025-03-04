@@ -1,7 +1,6 @@
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello, Automotive Catalog!");
-
         VehicleDatabase.loadVehicles();
+        new CarViewer(VehicleDatabase.getVehicles());
     }
 }
