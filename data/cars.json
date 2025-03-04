@@ -14,5 +14,69 @@
         "fuelType": "Electric",
         "imageUrl": "images/model3.jpg",
         "review": "A fantastic EV with cutting-edge technology."
+    },
+    {
+        "make": "Honda",
+        "model": "Civic",
+        "year": 2021,
+        "fuelType": "Gasoline",
+        "imageUrl": "images/civic.jpg",
+        "review": "A durable sedan with excellent mileage and handling."
+    },
+    {
+        "make": "Ford",
+        "model": "Mustang",
+        "year": 2022,
+        "fuelType": "Gasoline",
+        "imageUrl": "images/mustang.jpg",
+        "review": "An American muscle car icon with a powerful engine."
+    },
+    {
+        "make": "BMW",
+        "model": "M3",
+        "year": 2023,
+        "fuelType": "Gasoline",
+        "imageUrl": "images/m3.jpg",
+        "review": "A luxury sports sedan with high performance."
+    },
+    {
+        "make": "Mercedes",
+        "model": "C-Class",
+        "year": 2022,
+        "fuelType": "Hybrid",
+        "imageUrl": "images/cclass.jpg",
+        "review": "A stylish luxury sedan with cutting-edge features."
+    },
+    {
+        "make": "Chevrolet",
+        "model": "Camaro",
+        "year": 2021,
+        "fuelType": "Gasoline",
+        "imageUrl": "images/camaro.jpg",
+        "review": "A bold design with aggressive performance."
+    },
+    {
+        "make": "Nissan",
+        "model": "Leaf",
+        "year": 2023,
+        "fuelType": "Electric",
+        "imageUrl": "images/leaf.jpg",
+        "review": "An affordable and practical electric vehicle."
+    },
+    {
+        "make": "Hyundai",
+        "model": "Elantra",
+        "year": 2022,
+        "fuelType": "Hybrid",
+        "imageUrl": "images/elantra.jpg",
+        "review": "A compact sedan with modern features and hybrid efficiency."
+    },
+    {
+        "make": "Volkswagen",
+        "model": "Golf GTI",
+        "year": 2021,
+        "fuelType": "Gasoline",
+        "imageUrl": "images/golfgti.jpg",
+        "review": "A sporty hatchback with a fun driving experience."
     }
 ]
