@@ -1,37 +1,38 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 
 public class VehicleDatabase {
-    private static final String FILE_PATH = "data/sample_vehicles.csv"; // Path to the CSV file
+    private static final String FILE_PATH = "data/cars.json";
+    private static List<Vehicle> vehicles = new ArrayList<>();
 
-    // Method to read and display vehicle data
     public static void loadVehicles() {
-        System.out.println("Reading vehicle database...\n");
+        try {
+            String content = new String(Files.readAllBytes(Paths.get(FILE_PATH)));
+            JSONArray jsonArray = new JSONArray(content);
 
-        try (BufferedReader br = new BufferedReader(new FileReader(FILE_PATH))) {
-            String line;
-            boolean isHeader = true;
-
-            while ((line = br.readLine()) != null) {
-                // Skip the header row
-                if (isHeader) {
-                    isHeader = false;
-                    continue;
-                }
-
-                // Split each row by commas
-                String[] vehicle = line.split(",");
-                String make = vehicle[0];
-                String model = vehicle[1];
-                String year = vehicle[2];
-                String fuelType = vehicle[3];
-
-                // Print the vehicle details
-                System.out.println("Make: " + make + ", Model: " + model + ", Year: " + year + ", Fuel Type: " + fuelType);
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject obj = jsonArray.getJSONObject(i);
+                vehicles.add(new Vehicle(
+                        obj.getString("make"),
+                        obj.getString("model"),
+                        obj.getInt("year"),
+                        obj.getString("fuelType"),
+                        obj.getString("imageUrl"),
+                        obj.getString("review")
+                ));
             }
+            System.out.println("Loaded " + vehicles.size() + " vehicles.");
         } catch (IOException e) {
-            System.err.println("Error reading the CSV file: " + e.getMessage());
+            System.err.println("Error reading JSON file: " + e.getMessage());
         }
+    }
+
+    public static List<Vehicle> getVehicles() {
+        return vehicles;
     }
 }
