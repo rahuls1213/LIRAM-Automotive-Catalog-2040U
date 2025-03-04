@@ -6,10 +6,20 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
+ /**
+ * The VehicleDatabase class is responsible for loading vehicle data 
+ * from a JSON file and providing access to the list of vehicles.
+ */
 public class VehicleDatabase {
     private static final String FILE_PATH = "data/cars.json";
     private static List<Vehicle> vehicles = new ArrayList<>();
 
+    /**
+    * Loads vehicle data from a JSON file and stores it in the list.
+    * Reads the file, parses the JSON, and creates Vehicle objects.
+    * 
+    * If an error occurs while reading the file, an error message is printed.
+    */
     public static void loadVehicles() {
         try {
             String content = new String(Files.readAllBytes(Paths.get(FILE_PATH)));
@@ -32,6 +42,11 @@ public class VehicleDatabase {
         }
     }
 
+    /**
+    * Returns the list of vehicles loaded from the JSON file.
+    * 
+    * @return List of Vehicle objects.
+    */
     public static List<Vehicle> getVehicles() {
         return vehicles;
     }
