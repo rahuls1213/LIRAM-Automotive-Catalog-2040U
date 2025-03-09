@@ -2,11 +2,22 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.net.URL;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.ArrayList;
 
+/**
+ * CarViewer class creates a GUI for viewing a list of vehicles.
+ * Features:
+ * - Displays car details including make, model, year, fuel type, and review.
+ * - Loads and displays car images.
+ * - Allows navigation between vehicles.
+ * - Provides search and sorting functionalities.
+ * - Includes a placeholder login button.
+ */
 public class CarViewer {
     private JFrame frame;
     private JLabel carImage;
@@ -15,83 +26,77 @@ public class CarViewer {
     private JTextField searchField;
     private JComboBox<String> sortDropdown;
     private List<Vehicle> vehicles;
-    private List<Vehicle> originalVehicles; // Backup for search reset
+    private List<Vehicle> originalVehicles;
     private int currentIndex = 0;
 
-     /**
-     * Initializes the CarViewer GUI and sets up components including 
-     * the frame, navigation buttons, search functionality, and sorting.
-     * 
-     * @param vehicles List of Vehicle objects to be displayed.
+    /**
+     * Initializes the CarViewer GUI with a list of vehicles.
+     * @param vehicles List of Vehicle objects to display.
      */
     public CarViewer(List<Vehicle> vehicles) {
         this.vehicles = vehicles;
-        this.originalVehicles = new ArrayList<>(vehicles); // Backup the original list
+        this.originalVehicles = new ArrayList<>(vehicles); // Store original list
 
         frame = new JFrame("Car Viewer");
         frame.setSize(600, 600);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new BorderLayout());
 
-        // Car Image
-        carImage = new JLabel();
-        carImage.setHorizontalAlignment(JLabel.CENTER);
-        frame.add(carImage, BorderLayout.NORTH);
-
-        // Car Details Text Area
-        carDetails = new JTextArea();
-        carDetails.setEditable(false);
-        frame.add(new JScrollPane(carDetails), BorderLayout.CENTER);
-
-        // Control Panel (Search, Sorting, Login)
+        // TOP PANEL: Search, Sorting, and Login
         JPanel controlPanel = new JPanel();
-
-        // Search Field
         searchField = new JTextField(10);
         searchButton = new JButton("Search");
-
-        // Sorting Dropdown
         String[] sortOptions = {"Sort by Make", "Sort by Year"};
         sortDropdown = new JComboBox<>(sortOptions);
-
-        // Login Button (UI Only)
         loginButton = new JButton("Login");
 
-        // Add components to control panel
         controlPanel.add(new JLabel("Search:"));
         controlPanel.add(searchField);
         controlPanel.add(searchButton);
         controlPanel.add(sortDropdown);
         controlPanel.add(loginButton);
 
-        frame.add(controlPanel, BorderLayout.NORTH);
+        frame.add(controlPanel, BorderLayout.NORTH); // Keeps the top bar
 
-        // Navigation Buttons
+        // MAIN CONTENT: Image & Details
+        JPanel contentPanel = new JPanel();
+        contentPanel.setLayout(new BorderLayout());
+
+        // Car Image (Displayed below search bar)
+        carImage = new JLabel();
+        carImage.setHorizontalAlignment(JLabel.CENTER);
+        contentPanel.add(carImage, BorderLayout.NORTH);
+
+        // Car Details (Displayed below image)
+        carDetails = new JTextArea();
+        carDetails.setEditable(false);
+        contentPanel.add(new JScrollPane(carDetails), BorderLayout.CENTER);
+
+        frame.add(contentPanel, BorderLayout.CENTER); // Adds content to the center
+
+        // NAVIGATION BUTTONS: Previous & Next
         JPanel buttonPanel = new JPanel();
         prevButton = new JButton("Previous");
         nextButton = new JButton("Next");
         buttonPanel.add(prevButton);
         buttonPanel.add(nextButton);
-        frame.add(buttonPanel, BorderLayout.SOUTH);
+        frame.add(buttonPanel, BorderLayout.SOUTH); // Adds navigation buttons at the bottom
 
-        // Add Action Listeners
+        // ACTION LISTENERS
         prevButton.addActionListener(e -> showPreviousCar());
         nextButton.addActionListener(e -> showNextCar());
         searchButton.addActionListener(e -> searchCars());
         sortDropdown.addActionListener(e -> sortCars());
 
-        // Show first car
+        // Display first vehicle
         showCarDetails(currentIndex);
-
         frame.setVisible(true);
     }
 
     /**
-    * Displays the details of the car at the specified index.
-    * Updates the text area with vehicle details and loads the image.
-    *
-    * @param index The index of the car in the vehicles list.
-    */
+     * Displays details of the selected vehicle, including image.
+     * @param index Index of the vehicle to display.
+     */
     private void showCarDetails(int index) {
         if (vehicles.isEmpty()) {
             carDetails.setText("No vehicles available.");
@@ -104,19 +109,48 @@ public class CarViewer {
                 "\nYear: " + car.getYear() + "\nFuel Type: " + car.getFuelType() +
                 "\nReview: " + car.getReview());
 
-        // Attempt to load the image correctly
-        try {
-            ImageIcon icon = new ImageIcon(getClass().getResource("/" + car.getImageUrl()));
-            carImage.setIcon(icon);
-        } catch (Exception e) {
-            carImage.setText("Image not found");
-        }
+        loadCarImage(car.getImageUrl());
+
+        // Refresh the UI to reflect changes
+        frame.revalidate();
+        frame.repaint();
     }
 
     /**
-    * Displays the next car in the list.
-    * Updates the UI if there is a next car available.
-    */
+     * Loads and scales the vehicle image from the specified path.
+     * @param imagePath The file path or classpath of the image.
+     */
+    private void loadCarImage(String imagePath) {
+        if (imagePath == null || imagePath.isEmpty()) {
+            carImage.setText("No image available.");
+            return;
+        }
+
+        // Try loading as an external file
+        File imageFile = new File(imagePath);
+        if (imageFile.exists()) {
+            ImageIcon icon = new ImageIcon(imageFile.getAbsolutePath());
+            Image img = icon.getImage().getScaledInstance(400, 300, Image.SCALE_SMOOTH);
+            carImage.setIcon(new ImageIcon(img));
+            return;
+        }
+
+        // Try loading from classpath
+        URL imageUrl = getClass().getResource("/" + imagePath);
+        if (imageUrl != null) {
+            ImageIcon icon = new ImageIcon(imageUrl);
+            Image img = icon.getImage().getScaledInstance(400, 300, Image.SCALE_SMOOTH);
+            carImage.setIcon(new ImageIcon(img));
+            return;
+        }
+
+        // If not found, display error text
+        carImage.setText("Image not found");
+    }
+
+    /**
+     * Displays the next car in the list.
+     */
     private void showNextCar() {
         if (currentIndex < vehicles.size() - 1) {
             currentIndex++;
@@ -125,9 +159,8 @@ public class CarViewer {
     }
 
     /**
-    * Displays the previous car in the list.
-    * Updates the UI if there is a previous car available.
-    */
+     * Displays the previous car in the list.
+     */
     private void showPreviousCar() {
         if (currentIndex > 0) {
             currentIndex--;
@@ -136,47 +169,39 @@ public class CarViewer {
     }
 
     /**
-    * Filters the vehicle list based on the search query entered by the user.
-    * If the search field is empty, it resets the list to its original state.
-    */
+     * Filters the vehicle list based on user search input.
+     * Resets the list if the search field is empty.
+     */
     private void searchCars() {
         String query = searchField.getText().trim().toLowerCase();
-
-        // Reset list if search is empty
         if (query.isEmpty()) {
             vehicles = new ArrayList<>(originalVehicles);
-            currentIndex = 0;
-            showCarDetails(currentIndex);
-            return;
-        }
-
-        List<Vehicle> filteredVehicles = new ArrayList<>();
-        for (Vehicle car : originalVehicles) { // Search in the full dataset
-            if (car.getMake().toLowerCase().contains(query) || 
-                car.getModel().toLowerCase().contains(query)) {
-                filteredVehicles.add(car);
-            }
-        }
-
-        if (filteredVehicles.isEmpty()) {
-            JOptionPane.showMessageDialog(frame, "No cars found!");
         } else {
+            List<Vehicle> filteredVehicles = new ArrayList<>();
+            for (Vehicle car : originalVehicles) {
+                if (car.getMake().toLowerCase().contains(query) ||
+                        car.getModel().toLowerCase().contains(query)) {
+                    filteredVehicles.add(car);
+                }
+            }
+            if (filteredVehicles.isEmpty()) {
+                JOptionPane.showMessageDialog(frame, "No cars found!");
+                return;
+            }
             vehicles = filteredVehicles;
-            currentIndex = 0;
-            showCarDetails(currentIndex);
         }
+
+        currentIndex = 0;
+        showCarDetails(currentIndex);
     }
 
     /**
-    * Sorts the list of vehicles based on the selected sorting option.
-    * Sorting options include sorting by make and by year.
-    * After sorting, the first vehicle in the sorted list is displayed.
-    */
+     * Sorts the vehicles list based on the selected sorting option.
+     */
     private void sortCars() {
-        // Restore full list before sorting
         vehicles = new ArrayList<>(originalVehicles);
-
         String selectedOption = (String) sortDropdown.getSelectedItem();
+
         if (selectedOption.equals("Sort by Make")) {
             Collections.sort(vehicles, Comparator.comparing(Vehicle::getMake));
         } else if (selectedOption.equals("Sort by Year")) {
