@@ -30,10 +30,6 @@ public class CarViewer {
     private final int CARS_PER_PAGE = 3;
     private boolean viewingFavorites = false;
 
-    /**
-     * Initializes the CarViewer GUI with a paginated list of vehicles.
-     * @param vehicles List of Vehicle objects to display.
-     */
     public CarViewer(List<Vehicle> vehicles) {
         this.vehicles = vehicles;
         this.originalVehicles = new ArrayList<>(vehicles);
