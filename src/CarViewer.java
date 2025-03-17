@@ -5,7 +5,18 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.ArrayList;
+import java.io.File;
+import java.net.URL;
 
+/**
+ * CarViewer class creates a GUI for viewing a paginated list of vehicles.
+ * Features:
+ * - Displays multiple cars per page.
+ * - Loads and displays car images.
+ * - Allows navigation between pages of vehicles.
+ * - Provides search, sorting, and a Home button to reset pagination.
+ * - Inline comparison between two vehicles.
+ */
 public class CarViewer {
     private JFrame frame;
     private JPanel carPanel;
@@ -19,12 +30,16 @@ public class CarViewer {
     private final int CARS_PER_PAGE = 3;
     private boolean viewingFavorites = false;
 
+    /**
+     * Initializes the CarViewer GUI with a paginated list of vehicles.
+     * @param vehicles List of Vehicle objects to display.
+     */
     public CarViewer(List<Vehicle> vehicles) {
         this.vehicles = vehicles;
         this.originalVehicles = new ArrayList<>(vehicles);
 
         frame = new JFrame("Car Viewer");
-        frame.setSize(800, 600);
+        frame.setSize(900, 600);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new BorderLayout());
 
@@ -33,7 +48,7 @@ public class CarViewer {
         searchField = new JTextField(10);
         searchButton = new JButton("Search");
         homeButton = new JButton("Home");
-        viewFavoritesButton = new JButton("View Favorites"); // New button to switch to favorites
+        viewFavoritesButton = new JButton("View Favorites");
         String[] sortOptions = {"Sort by Make", "Sort by Year"};
         sortDropdown = new JComboBox<>(sortOptions);
         loginButton = new JButton("Login");
@@ -42,7 +57,7 @@ public class CarViewer {
         controlPanel.add(searchField);
         controlPanel.add(searchButton);
         controlPanel.add(homeButton);
-        controlPanel.add(viewFavoritesButton); // Add View Favorites button
+        controlPanel.add(viewFavoritesButton);
         controlPanel.add(sortDropdown);
         controlPanel.add(loginButton);
 
@@ -73,6 +88,9 @@ public class CarViewer {
         frame.setVisible(true);
     }
 
+    /**
+     * Displays multiple cars on the current page, including inline comparison UI.
+     */
     private void displayCars() {
         carPanel.removeAll();
         int start = currentPage * CARS_PER_PAGE;
@@ -102,12 +120,48 @@ public class CarViewer {
             JButton addToFavoritesButton = new JButton("Add to Favorites");
             JButton compareButton = new JButton("Compare");
 
+            // INLINE COMPARISON PANEL
+            JPanel comparisonContainer = new JPanel(new GridLayout(1, 2));
+            JComboBox<String> comparisonDropdown = new JComboBox<>();
+            JLabel comparisonLabel = new JLabel();
+
+            // Hide comparison by default
+            comparisonContainer.setVisible(false);
+
+            compareButton.addActionListener(e -> {
+                comparisonDropdown.removeAllItems();
+                for (Vehicle v : originalVehicles) {
+                    if (!v.equals(car)) {
+                        comparisonDropdown.addItem(v.getMake() + " " + v.getModel());
+                    }
+                }
+                comparisonContainer.setVisible(true);
+            });
+
+            // When user selects a vehicle, update comparison label
+            comparisonDropdown.addActionListener(e -> {
+                int selectedIndex = comparisonDropdown.getSelectedIndex();
+                if (selectedIndex >= 0) {
+                    Vehicle selectedVehicle = originalVehicles.get(selectedIndex);
+                    comparisonLabel.setText(
+                            "<html><b>Comparing:</b><br>" +
+                                    car.getMake() + " " + car.getModel() +
+                                    " <b>vs.</b> " + selectedVehicle.getMake() + " " + selectedVehicle.getModel() +
+                                    "<br>Year: " + car.getYear() + " vs. " + selectedVehicle.getYear() +
+                                    "<br>Fuel Type: " + car.getFuelType() + " vs. " + selectedVehicle.getFuelType() +
+                                    "</html>");
+                }
+            });
+
+            comparisonContainer.add(comparisonDropdown);
+            comparisonContainer.add(comparisonLabel);
+
             addToFavoritesButton.addActionListener(e -> addToFavorites(car));
-            compareButton.addActionListener(e -> showComparisonWindow(car));
 
             buttonPanel.add(addToFavoritesButton);
             buttonPanel.add(compareButton);
             vehiclePanel.add(buttonPanel, BorderLayout.SOUTH);
+            vehiclePanel.add(comparisonContainer, BorderLayout.EAST);
 
             carPanel.add(vehiclePanel);
         }
@@ -135,30 +189,17 @@ public class CarViewer {
         if (query.isEmpty()) {
             vehicles = new ArrayList<>(originalVehicles);
         } else {
-            List<Vehicle> filteredVehicles = new ArrayList<>();
-            for (Vehicle car : originalVehicles) {
-                if (car.getMake().toLowerCase().contains(query) || car.getModel().toLowerCase().contains(query)) {
-                    filteredVehicles.add(car);
-                }
-            }
-            if (filteredVehicles.isEmpty()) {
-                JOptionPane.showMessageDialog(frame, "No cars found!");
-                return;
-            }
-            vehicles = filteredVehicles;
+            vehicles = originalVehicles.stream()
+                    .filter(car -> car.getMake().toLowerCase().contains(query) || car.getModel().toLowerCase().contains(query))
+                    .toList();
         }
         currentPage = 0;
         displayCars();
     }
 
     private void sortCars() {
-        vehicles = new ArrayList<>(originalVehicles);
-        String selectedOption = (String) sortDropdown.getSelectedItem();
-        if (selectedOption.equals("Sort by Make")) {
-            Collections.sort(vehicles, Comparator.comparing(Vehicle::getMake));
-        } else if (selectedOption.equals("Sort by Year")) {
-            Collections.sort(vehicles, Comparator.comparingInt(Vehicle::getYear));
-        }
+        vehicles.sort(sortDropdown.getSelectedItem().equals("Sort by Make") ?
+                Comparator.comparing(Vehicle::getMake) : Comparator.comparingInt(Vehicle::getYear));
         currentPage = 0;
         displayCars();
     }
@@ -186,47 +227,5 @@ public class CarViewer {
             favorites.add(vehicle);
             JOptionPane.showMessageDialog(frame, vehicle.getMake() + " " + vehicle.getModel() + " added to favorites!");
         }
-    }
-
-    private void showComparisonWindow(Vehicle selectedCar) {
-        JDialog comparisonDialog = new JDialog(frame, "Compare Vehicles", true);
-        comparisonDialog.setSize(600, 400);
-        comparisonDialog.setLayout(new GridLayout(1, 2));
-
-        JPanel leftPanel = createCarDetailsPanel(selectedCar);
-        JPanel rightPanel = new JPanel(new BorderLayout());
-
-        JComboBox<Vehicle> comparisonDropdown = new JComboBox<>(originalVehicles.toArray(new Vehicle[0]));
-        JButton compareButton = new JButton("Compare");
-
-        compareButton.addActionListener(e -> {
-            Vehicle selectedComparison = (Vehicle) comparisonDropdown.getSelectedItem();
-            rightPanel.removeAll();
-            rightPanel.add(createCarDetailsPanel(selectedComparison), BorderLayout.CENTER);
-            rightPanel.revalidate();
-            rightPanel.repaint();
-        });
-
-        JPanel selectionPanel = new JPanel();
-        selectionPanel.add(new JLabel("Compare with: "));
-        selectionPanel.add(comparisonDropdown);
-        selectionPanel.add(compareButton);
-
-        rightPanel.add(selectionPanel, BorderLayout.NORTH);
-        comparisonDialog.add(leftPanel);
-        comparisonDialog.add(rightPanel);
-
-        comparisonDialog.setVisible(true);
-    }
-
-    private JPanel createCarDetailsPanel(Vehicle car) {
-        JPanel panel = new JPanel(new BorderLayout());
-        JLabel imageLabel = new JLabel();
-        loadCarImage(car.getImageUrl(), imageLabel);
-        JTextArea details = new JTextArea(car.getMake() + " " + car.getModel() + "\nYear: " + car.getYear());
-        details.setEditable(false);
-        panel.add(imageLabel, BorderLayout.CENTER);
-        panel.add(details, BorderLayout.SOUTH);
-        return panel;
     }
 }
