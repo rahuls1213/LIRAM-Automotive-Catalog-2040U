@@ -1,6 +1,14 @@
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+
 public class Main {
     public static void main(String[] args) {
-        VehicleDatabase.loadVehicles();
-        new CarViewer(VehicleDatabase.getVehicles());
+        try {
+            //Modern look by using Nimbus
+            UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        javax.swing.SwingUtilities.invokeLater(() -> new CarViewer().setVisible(true));
     }
 }
