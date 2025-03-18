@@ -20,9 +20,9 @@ To check if Java is installed, run:
 ```sh
 java -version
 ```
-```sh
-To check if Git is installed, run:
 
+To check if Git is installed, run:
+```sh
 git --version
 ```
 ### 1. Cloning the GitHub Repository
