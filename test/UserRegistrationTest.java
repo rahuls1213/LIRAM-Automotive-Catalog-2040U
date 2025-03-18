@@ -7,7 +7,7 @@ public class UserRegistrationTest {
 
     @BeforeEach
     void setUp() {
-        userRegistration = new UserRegistration(); // 🚨 This class doesn't exist yet!
+        userRegistration = new UserRegistration(); // This class doesn't exist yet!
     }
 
     @Test
