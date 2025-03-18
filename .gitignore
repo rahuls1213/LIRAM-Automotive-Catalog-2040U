@@ -2,6 +2,7 @@
 *.class
 bin/
 deploy/bin/
+deploy/
 
 # Ignore dependencies (if they can be rebuilt)
 deploy/lib/
