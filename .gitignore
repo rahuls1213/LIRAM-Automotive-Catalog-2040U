@@ -3,6 +3,7 @@
 bin/
 deploy/bin/
 deploy/
+*~*.CLA
 
 # Ignore dependencies (if they can be rebuilt)
 deploy/lib/
@@ -12,13 +13,11 @@ deploy/lib/
 
 # Ignore logs and temporary files
 *.log
+*.tmp
 
 # Ignore build and temporary files
 out/
 build/
-
-# Log file
-*.log
 
 # BlueJ files
 *.ctxt
