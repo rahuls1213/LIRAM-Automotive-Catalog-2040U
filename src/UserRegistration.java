@@ -1,16 +1,10 @@
 import java.util.HashSet;
+import java.util.Set;
 
 public class UserRegistration {
-    private HashSet<String> registeredUsers;
-
-    public UserRegistration() {
-        registeredUsers = new HashSet<>();
-    }
+    private final Set<String> registeredUsers = new HashSet<>();
 
     public boolean register(String username, String password) {
-        if (username.isEmpty() || password.isEmpty()) return false; // Reject empty fields
-        if (registeredUsers.contains(username)) return false; // Reject duplicate usernames
-        registeredUsers.add(username);
-        return true; // Successful registration
+        return !username.isEmpty() && !password.isEmpty() && registeredUsers.add(username);
     }
 }
