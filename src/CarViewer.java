@@ -66,8 +66,47 @@ public class CarViewer {
 
         // NAVIGATION BUTTONS
         JPanel buttonPanel = new JPanel();
-        prevPageButton = new JButton("Previous Page");
-        nextPageButton = new JButton("Next Page");
+
+        prevPageButton = new JButton(new ImageIcon("images/prev.png"));
+        nextPageButton = new JButton(new ImageIcon("images/next.png"));
+
+        // Make buttons slightly larger
+        prevPageButton.setPreferredSize(new Dimension(50, 50));
+        nextPageButton.setPreferredSize(new Dimension(50, 50));
+
+        // Remove button borders for a cleaner look
+        prevPageButton.setBorderPainted(false);
+        nextPageButton.setBorderPainted(false);
+
+        // Add hover effect
+        prevPageButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                prevPageButton.setBackground(new Color(55, 0, 179)); // Slightly Darker Purple
+                prevPageButton.setForeground(Color.WHITE);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                prevPageButton.setBackground(new Color(30, 30, 30));
+                prevPageButton.setForeground(new Color(187, 134, 252));
+            }
+        });
+
+        nextPageButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                nextPageButton.setBackground(new Color(55, 0, 179)); // Slightly Darker Purple
+                nextPageButton.setForeground(Color.WHITE);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                nextPageButton.setBackground(new Color(30, 30, 30));
+                nextPageButton.setForeground(new Color(187, 134, 252));
+            }
+        });
+
+        // Add buttons to the panel
+        buttonPanel.add(prevPageButton);
+        buttonPanel.add(nextPageButton);
+        frame.add(buttonPanel, BorderLayout.SOUTH);
+
+
         buttonPanel.add(prevPageButton);
         buttonPanel.add(nextPageButton);
         frame.add(buttonPanel, BorderLayout.SOUTH);
@@ -94,27 +133,60 @@ public class CarViewer {
 
         for (int i = start; i < end; i++) {
             Vehicle car = vehicles.get(i);
-            JPanel vehiclePanel = new JPanel(new BorderLayout());
+            JPanel vehiclePanel = new JPanel();
+            vehiclePanel.setLayout(new BorderLayout());
+            vehiclePanel.setBorder(BorderFactory.createLineBorder(Color.RED, 2, true)); // Add a border for a card-like feel
+            vehiclePanel.setBackground(new Color(30, 30, 30)); // Dark Gray Panel
+            vehiclePanel.setBorder(BorderFactory.createLineBorder(new Color(187, 134, 252), 2, true)); // Soft Purple Border
+            vehiclePanel.setPreferredSize(new Dimension(800, 180)); // Set fixed size for consistency
+
 
             // Load car image
             JLabel carImage = new JLabel();
             carImage.setHorizontalAlignment(JLabel.CENTER);
+            carImage.setPreferredSize(new Dimension(200, 150)); // Ensure consistent image size
             loadCarImage(car.getImageUrl(), carImage);
             vehiclePanel.add(carImage, BorderLayout.WEST);
 
-            // Car details
-            JTextArea carDetails = new JTextArea();
-            carDetails.setEditable(false);
-            carDetails.setText("Make: " + car.getMake() + "\nModel: " + car.getModel() +
-                    "\nYear: " + car.getYear() + "\nFuel Type: " + car.getFuelType() +
-                    "\nReview: " + car.getReview());
 
-            vehiclePanel.add(carDetails, BorderLayout.CENTER);
+            // Car details
+            JPanel detailsPanel = new JPanel();
+            detailsPanel.setLayout(new BoxLayout(detailsPanel, BoxLayout.Y_AXIS)); // Organizes text vertically
+            detailsPanel.setBackground(new Color(30, 30, 30)); // Dark Gray
+
+            JLabel makeModelLabel = new JLabel(car.getMake() + " " + car.getModel());
+            makeModelLabel.setFont(new Font("Arial", Font.BOLD, 18));
+            makeModelLabel.setForeground(new Color(187, 134, 252)); // Soft Purple
+
+
+            JLabel yearFuelLabel = new JLabel("Year: " + car.getYear() + " | Fuel: " + car.getFuelType());
+            yearFuelLabel.setFont(new Font("Arial", Font.PLAIN, 14));
+            yearFuelLabel.setForeground(Color.WHITE); // White text
+
+
+            JLabel reviewLabel = new JLabel("<html><i>" + car.getReview() + "</i></html>");
+            reviewLabel.setFont(new Font("Arial", Font.ITALIC, 12));
+            reviewLabel.setForeground(new Color(3, 218, 198)); // Cyan Accent
+
+
+            detailsPanel.add(makeModelLabel);
+            detailsPanel.add(yearFuelLabel);
+            detailsPanel.add(reviewLabel);
+
+            vehiclePanel.add(detailsPanel, BorderLayout.CENTER);
+
 
             // BUTTONS: Add to Favorites & Compare
             JPanel buttonPanel = new JPanel();
             JButton addToFavoritesButton = new JButton("Add to Favorites");
+            addToFavoritesButton.setBackground(new Color(30, 30, 30));
+            addToFavoritesButton.setForeground(new Color(3, 218, 198)); // Cyan
+            addToFavoritesButton.setBorder(BorderFactory.createLineBorder(new Color(3, 218, 198), 2));
+
             JButton compareButton = new JButton("Compare");
+            compareButton.setBackground(new Color(30, 30, 30));
+            compareButton.setForeground(new Color(3, 218, 198)); // Cyan
+            compareButton.setBorder(BorderFactory.createLineBorder(new Color(3, 218, 198), 2));
 
             // INLINE COMPARISON PANEL
             JPanel comparisonContainer = new JPanel(new GridLayout(1, 2));
@@ -158,6 +230,12 @@ public class CarViewer {
             buttonPanel.add(compareButton);
             vehiclePanel.add(buttonPanel, BorderLayout.SOUTH);
             vehiclePanel.add(comparisonContainer, BorderLayout.EAST);
+
+            vehiclePanel.setBorder(BorderFactory.createCompoundBorder(
+                BorderFactory.createEmptyBorder(10, 10, 10, 10), // Outer margin
+                BorderFactory.createLineBorder(Color.BLACK, 2, true) // Inner border
+            ));
+
 
             carPanel.add(vehiclePanel);
         }
