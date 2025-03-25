@@ -38,5 +38,3 @@ build/
 hs_err_pid*
 replay_pid*
 
-# Ignore runtime user data
-data/users.json
