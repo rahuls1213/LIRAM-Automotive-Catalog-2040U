@@ -17,7 +17,25 @@ public class UserDatabase {
 
             for (int i = 0; i < arr.length(); i++) {
                 JSONObject obj = arr.getJSONObject(i);
-                users.add(new User(obj.getString("username"), obj.getString("passwordHash")));
+                User user = new User(obj.getString("username"), obj.getString("passwordHash"));
+
+                // Load favorites if available
+                if (obj.has("favorites")) {
+                    JSONArray favs = obj.getJSONArray("favorites");
+                    for (int j = 0; j < favs.length(); j++) {
+                        JSONObject favObj = favs.getJSONObject(j);
+                        Vehicle match = VehicleDatabase.findVehicle(
+                                favObj.getString("make"),
+                                favObj.getString("model"),
+                                favObj.getInt("year")
+                        );
+                        if (match != null) {
+                            user.getFavorites().add(match);
+                        }
+                    }
+                }
+
+                users.add(user);
             }
         } catch (IOException e) {
             System.err.println("Could not read users.json: " + e.getMessage());
@@ -30,6 +48,18 @@ public class UserDatabase {
             JSONObject obj = new JSONObject();
             obj.put("username", user.getUsername());
             obj.put("passwordHash", user.getPasswordHash());
+
+            // Save favorites
+            JSONArray favArray = new JSONArray();
+            for (Vehicle v : user.getFavorites()) {
+                JSONObject favObj = new JSONObject();
+                favObj.put("make", v.getMake());
+                favObj.put("model", v.getModel());
+                favObj.put("year", v.getYear());
+                favArray.put(favObj);
+            }
+            obj.put("favorites", favArray);
+
             arr.put(obj);
         }
 

@@ -25,7 +25,9 @@ public class CarViewer {
     private JButton nextPageButton, prevPageButton, searchButton, homeButton, loginButton, viewFavoritesButton;
     private List<Vehicle> vehicles;
     private List<Vehicle> originalVehicles;
-    private List<Vehicle> favorites = new ArrayList<>();
+    private List<Vehicle> getFavorites() {
+        return Session.currentUser != null ? Session.currentUser.getFavorites() : new ArrayList<>();
+    }    
     private int currentPage = 0;
     private final int CARS_PER_PAGE = 3;
     private boolean viewingFavorites = false;
@@ -148,7 +150,7 @@ public class CarViewer {
             vehiclePanel.setLayout(new BorderLayout());
 
             // Check if the car is in favorites and change appearance
-            if (favorites.contains(car)) {
+            if (getFavorites().contains(car)) {
                 vehiclePanel.setBorder(BorderFactory.createCompoundBorder(
                         BorderFactory.createLineBorder(new Color(255, 215, 0), 5, true), // Bright Gold Border
                         BorderFactory.createEmptyBorder(10, 10, 10, 10) // Add some spacing inside
@@ -316,28 +318,37 @@ public class CarViewer {
     }
 
     private void viewFavorites() {
-        if (favorites.isEmpty()) {
+        if (getFavorites().isEmpty()) {
             JOptionPane.showMessageDialog(frame, "No favorite vehicles.");
             return;
         }
         viewingFavorites = true;
-        vehicles = new ArrayList<>(favorites);
+        vehicles = new ArrayList<>(getFavorites());
         currentPage = 0;
         displayCars();
     }
 
     private void addToFavorites(Vehicle vehicle) {
-        if (favorites.contains(vehicle)) {
-            favorites.remove(vehicle);
+        if (Session.currentUser == null) {
+            JOptionPane.showMessageDialog(frame, "Please log in to use favorites.");
+            return;
+        }
+    
+        User user = Session.currentUser;
+    
+        if (user.isFavorite(vehicle)) {
+            user.removeFavorite(vehicle);
             JOptionPane.showMessageDialog(frame, vehicle.getMake() + " " + vehicle.getModel() + " removed from favorites.");
         } else {
-            favorites.add(vehicle);
+            user.addFavorite(vehicle);
             JOptionPane.showMessageDialog(frame, vehicle.getMake() + " " + vehicle.getModel() + " added to favorites!");
         }
-        displayCars(); // Refresh UI to update highlighting
+    
+        UserDatabase.saveUsers(); // Persist the change
+        displayCars(); // Refresh the UI
         carPanel.revalidate();
         carPanel.repaint();
-    }
+    }    
 
     private void showImagePopup(String imagePath) {
         // Create a new JFrame for the popup

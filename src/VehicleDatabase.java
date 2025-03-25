@@ -50,4 +50,15 @@ public class VehicleDatabase {
     public static List<Vehicle> getVehicles() {
         return vehicles;
     }
+
+    public static Vehicle findVehicle(String make, String model, int year) {
+        for (Vehicle v : vehicles) {
+            if (v.getMake().equalsIgnoreCase(make) &&
+                v.getModel().equalsIgnoreCase(model) &&
+                v.getYear() == year) {
+                return v;
+            }
+        }
+        return null;
+    }    
 }

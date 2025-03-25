@@ -10,7 +10,8 @@ public class Main {
             e.printStackTrace();
         }
 
-        UserDatabase.loadUsers(); // Load users once
+        VehicleDatabase.loadVehicles();  // ✅ Load vehicles first!
+        UserDatabase.loadUsers();        // ✅ Now users can load their favorites properly
 
         Object[] options = {"Login / Register", "Continue as Guest"};
         int choice = JOptionPane.showOptionDialog(null,
@@ -21,7 +22,6 @@ public class Main {
         boolean allowAccess = false;
 
         if (choice == 0) { // Login/Register path
-            // Login/Register path
             boolean loggedIn = false;
 
             while (!loggedIn) {
@@ -37,7 +37,6 @@ public class Main {
                 } else if (authChoice == 0) {
                     loggedIn = LoginScreen.prompt();
                     if (!loggedIn) {
-                        // Only show error if user actually submitted info (not if they hit Cancel)
                         JOptionPane.showMessageDialog(null, "❌ Login failed. Try again.");
                     }
                 } else {
@@ -45,15 +44,12 @@ public class Main {
                 }
             }
 
-
             allowAccess = loggedIn;
         } else if (choice == 1 || choice == JOptionPane.CLOSED_OPTION) {
             allowAccess = true;
         }
 
-        // Start app if allowed
         if (allowAccess) {
-            VehicleDatabase.loadVehicles();
             SwingUtilities.invokeLater(() -> new CarViewer(VehicleDatabase.getVehicles()));
         } else {
             JOptionPane.showMessageDialog(null, "Exiting application.");

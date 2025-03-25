@@ -14,6 +14,7 @@ public class LoginScreen {
 
         boolean success = UserAuthService.login(username, password);
         if (success) {
+            Session.currentUser = UserDatabase.getUser(username);  // ✅ Track the logged-in user
             JOptionPane.showMessageDialog(null, "✅ Login successful!");
         }
         return success;
