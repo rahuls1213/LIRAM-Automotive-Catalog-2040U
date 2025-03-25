@@ -11,11 +11,11 @@ mkdir -p bin
 # Compile Java files
 javac -cp "lib/*" -d bin src/*.java
 if [ $? -ne 0 ]; then
-    echo "❌ Compilation failed!"
+    echo "Compilation failed!"
     exit 1
 fi
 
-echo "✅ Compilation Successful!"
+echo "Compilation Successful!"
 echo "--------------------------------"
 echo "Running Application..."
 echo "--------------------------------"
@@ -23,11 +23,11 @@ echo "--------------------------------"
 # Run the project
 java -cp "bin:lib/*" Main
 if [ $? -ne 0 ]; then
-    echo "❌ Execution failed!"
+    echo "Execution failed!"
     exit 1
 fi
 
-echo "✅ Application ran successfully!"
+echo "Application ran successfully!"
 echo "--------------------------------"
 echo "Starting Deployment..."
 echo "--------------------------------"
@@ -40,4 +40,4 @@ mkdir -p deploy/bin deploy/lib
 cp -r bin/* deploy/bin/
 cp -r lib/* deploy/lib/
 
-echo "✅ Deployment completed! Files are in the deploy/ directory."
+echo "Deployment completed! Files are in the deploy/ directory."

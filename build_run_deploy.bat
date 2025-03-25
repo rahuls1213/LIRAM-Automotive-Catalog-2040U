@@ -17,11 +17,11 @@ mkdir bin
 rem Compile Java files
 javac -cp "lib/*" -d bin src/*.java
 if %ERRORLEVEL% NEQ 0 (
-    echo ❌ Compilation failed!
+    echo Compilation failed!
     exit /b %ERRORLEVEL%
 )
 
-echo ✅ Compilation Successful!
+echo Compilation Successful!
 echo --------------------------------
 echo Running Application...
 echo --------------------------------
@@ -29,11 +29,11 @@ echo --------------------------------
 rem Run the project
 java -cp "bin;lib/*" Main
 if %ERRORLEVEL% NEQ 0 (
-    echo ❌ Execution failed!
+    echo Execution failed!
     exit /b %ERRORLEVEL%
 )
 
-echo ✅ Application ran successfully!
+echo Application ran successfully!
 echo --------------------------------
 echo Starting Deployment...
 echo --------------------------------
@@ -47,4 +47,4 @@ rem Copy compiled files and libraries
 xcopy /E /Y bin deploy\bin >nul
 xcopy /E /Y lib deploy\lib >nul
 
-echo ✅ Deployment completed! Files are in the deploy\ directory.
+echo Deployment completed! Files are in the deploy\ directory.
