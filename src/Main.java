@@ -10,8 +10,8 @@ public class Main {
             e.printStackTrace();
         }
 
-        VehicleDatabase.loadVehicles();  // ✅ Load vehicles first!
-        UserDatabase.loadUsers();        // ✅ Now users can load their favorites properly
+        VehicleDatabase.loadVehicles();
+        UserDatabase.loadUsers();        
 
         Object[] options = {"Login / Register", "Continue as Guest"};
         int choice = JOptionPane.showOptionDialog(null,
