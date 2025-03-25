@@ -1,28 +1,35 @@
 import javax.swing.*;
 
 public class LoginScreen {
-
     public static boolean prompt() {
         String username = JOptionPane.showInputDialog("Username:");
-        String password = JOptionPane.showInputDialog("Password:");
-
-        if (UserAuthService.login(username, password)) {
-            JOptionPane.showMessageDialog(null, "✅ Login successful!");
-            return true;
-        } else {
-            JOptionPane.showMessageDialog(null, "❌ Login failed. Try again.");
-            return false;
+        if (username == null || username.isBlank()) {
+            return false; // User cancelled or entered nothing
         }
+
+        String password = JOptionPane.showInputDialog("Password:");
+        if (password == null || password.isBlank()) {
+            return false; // User cancelled or entered nothing
+        }
+
+        boolean success = UserAuthService.login(username, password);
+        if (success) {
+            JOptionPane.showMessageDialog(null, "✅ Login successful!");
+        }
+        return success;
     }
 
     public static void showRegisterPrompt() {
         String username = JOptionPane.showInputDialog("Choose a Username:");
+        if (username == null || username.isBlank()) return;
+
         String password = JOptionPane.showInputDialog("Choose a Password:");
+        if (password == null || password.isBlank()) return;
 
         if (UserAuthService.register(username, password)) {
             JOptionPane.showMessageDialog(null, "✅ Registration successful!");
         } else {
-            JOptionPane.showMessageDialog(null, "❌ That username already exists or input is invalid.");
+            JOptionPane.showMessageDialog(null, "❌ That username already exists or is invalid.");
         }
     }
 }

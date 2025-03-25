@@ -131,6 +131,7 @@ public class CarViewer {
 
         displayCars();
         frame.setVisible(true);
+        frame.setLocationRelativeTo(null);
     }
 
     /**
@@ -228,14 +229,12 @@ public class CarViewer {
             comparisonContainer.setVisible(false);
 
             compareButton.addActionListener(e -> {
-                comparisonDropdown.removeAllItems();
-                for (Vehicle v : originalVehicles) {
-                    if (!v.equals(car)) {
-                        comparisonDropdown.addItem(v.getMake() + " " + v.getModel());
-                    }
+                Vehicle selected = showVehicleSelectionDialog(car); // helper method below
+                if (selected != null) {
+                    new CarComparisonWindow(car, selected);
                 }
-                comparisonContainer.setVisible(true);
             });
+            
 
             // When user selects a vehicle, update comparison label
             comparisonDropdown.addActionListener(e -> {
@@ -392,5 +391,30 @@ public class CarViewer {
         frame.revalidate();
         frame.repaint();
     }
+
+    private Vehicle showVehicleSelectionDialog(Vehicle currentCar) {
+        List<String> options = new ArrayList<>();
+        List<Vehicle> selectableCars = new ArrayList<>();
+    
+        for (Vehicle v : originalVehicles) {
+            if (!v.equals(currentCar)) {
+                options.add(v.getMake() + " " + v.getModel());
+                selectableCars.add(v);
+            }
+        }
+    
+        Object selection = JOptionPane.showInputDialog(
+                frame,
+                "Select a car to compare with:",
+                "Choose Car",
+                JOptionPane.PLAIN_MESSAGE,
+                null,
+                options.toArray(),
+                options.get(0)
+        );
+    
+        int selectedIndex = options.indexOf(selection);
+        return (selectedIndex >= 0) ? selectableCars.get(selectedIndex) : null;
+    }    
 }
 
