@@ -78,5 +78,125 @@
         "fuelType": "Gasoline",
         "imageUrl": "images/golfgti.jpg",
         "review": "A sporty hatchback with a fun driving experience."
-    }
+    },
+    {
+        "make": "Audi",
+        "model": "A4",
+        "year": 2022,
+        "fuelType": "Gasoline",
+        "imageUrl": "images/a4.jpg",
+        "review": "A refined European sedan with advanced features."
+    },
+    {
+        "make": "Kia",
+        "model": "EV6",
+        "year": 2023,
+        "fuelType": "Electric",
+        "imageUrl": "images/ev6.jpg",
+        "review": "Stylish electric crossover with impressive range."
+    },
+    {
+        "make": "Subaru",
+        "model": "Outback",
+        "year": 2022,
+        "fuelType": "Gasoline",
+        "imageUrl": "images/outback.jpg",
+        "review": "Great for adventurous drivers with AWD and comfort."
+    },
+    {
+        "make": "Mazda",
+        "model": "CX-5",
+        "year": 2023,
+        "fuelType": "Gasoline",
+        "imageUrl": "images/cx5.jpg",
+        "review": "Sporty crossover with excellent handling and interior quality."
+    },
+    {
+        "make": "Volvo",
+        "model": "XC60",
+        "year": 2023,
+        "fuelType": "Hybrid",
+        "imageUrl": "images/xc60.jpg",
+        "review": "Safe and luxurious SUV with hybrid efficiency."
+    },
+    {
+        "make": "Lexus",
+        "model": "RX 350",
+        "year": 2022,
+        "fuelType": "Hybrid",
+        "imageUrl": "images/rx350.jpg",
+        "review": "A smooth ride with reliable hybrid performance."
+    },
+    {
+        "make": "Jeep",
+        "model": "Wrangler",
+        "year": 2023,
+        "fuelType": "Gasoline",
+        "imageUrl": "images/wrangler.jpg",
+        "review": "An off-road beast with iconic rugged styling."
+    },
+    {
+        "make": "Porsche",
+        "model": "Taycan",
+        "year": 2023,
+        "fuelType": "Electric",
+        "imageUrl": "images/taycan.jpg",
+        "review": "Electric performance car with thrilling speed."
+    },
+    {
+        "make": "Genesis",
+        "model": "G80",
+        "year": 2022,
+        "fuelType": "Gasoline",
+        "imageUrl": "images/g80.jpg",
+        "review": "Luxury and value combined in a premium sedan."
+    },
+    {
+        "make": "Acura",
+        "model": "Integra",
+        "year": 2023,
+        "fuelType": "Gasoline",
+        "imageUrl": "images/integra.jpg",
+        "review": "A revived classic with sporty appeal."
+    },
+    {
+        "make": "Toyota",
+        "model": "Prius Prime",
+        "year": 2022,
+        "fuelType": "Hybrid",
+        "imageUrl": "images/priusprime.jpg",
+        "review": "One of the most fuel-efficient hybrids around."
+    },
+    {
+        "make": "Ford",
+        "model": "F-150 Lightning",
+        "year": 2023,
+        "fuelType": "Electric",
+        "imageUrl": "images/f150lightning.jpg",
+        "review": "America’s top truck goes electric with power and utility."
+    },
+    {
+        "make": "Chevrolet",
+        "model": "Bolt EUV",
+        "year": 2023,
+        "fuelType": "Electric",
+        "imageUrl": "images/bolteuv.jpg",
+        "review": "Compact electric SUV with solid range and value."
+    },
+    {
+        "make": "Honda",
+        "model": "Accord Hybrid",
+        "year": 2022,
+        "fuelType": "Hybrid",
+        "imageUrl": "images/accordhybrid.jpg",
+        "review": "Blends comfort, efficiency, and classic sedan style."
+    },
+    {
+        "make": "Rivian",
+        "model": "R1T",
+        "year": 2023,
+        "fuelType": "Electric",
+        "imageUrl": "images/r1t.jpg",
+        "review": "Futuristic electric truck with off-road capability."
+    }    
 ]
