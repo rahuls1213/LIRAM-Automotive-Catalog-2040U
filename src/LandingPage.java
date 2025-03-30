@@ -5,9 +5,9 @@ public class LandingPage {
     private JFrame frame;
 
     public LandingPage() {
-        UserDatabase.loadUsers();
         VehicleDatabase.loadVehicles();
-
+        UserDatabase.loadUsers();
+        
         Color backgroundColor = new Color(240, 240, 235); // Beige from logo
         Color buttonColor = new Color(30, 30, 30);         // Black
         Color textColor = new Color(255, 255, 255);        // White
@@ -31,7 +31,7 @@ public class LandingPage {
         mainPanel.add(logoLabel, gbc);
 
         JLabel title = new JLabel("Welcome to LIRAM Catalog!");
-        title.setFont(new Font("Serif", Font.BOLD, 26));
+        title.setFont(new Font("Segoe UI", Font.BOLD, 26));
         title.setForeground(Color.BLACK);
         title.setHorizontalAlignment(SwingConstants.CENTER);
         gbc.gridy = 1;
