@@ -54,7 +54,7 @@ public class CarViewer {
         homeButton = createButton("Home");
         viewFavoritesButton = createButton("View Favorites");
         loginButton = createButton("Login");
-        sortDropdown = new JComboBox<>(new String[]{"Sort by Make", "Sort by Year"});
+        sortDropdown = new JComboBox<>(new String[]{"Sort by Make", "Sort by Year", "Sort by Price"});
         sortDropdown.setFont(BODY_FONT);
 
         controlPanel.add(themeToggle);
@@ -205,14 +205,23 @@ public class CarViewer {
     }
 
     private void sortCars() {
-        if (sortDropdown.getSelectedItem().equals("Sort by Make")) {
+        String selected = (String) sortDropdown.getSelectedItem();
+        if ("Sort by Make".equals(selected)) {
             vehicles.sort(Comparator.comparing(Vehicle::getMake));
-        } else {
+        } else if ("Sort by Year".equals(selected)) {
             vehicles.sort(Comparator.comparingInt(Vehicle::getYear));
+        } else if ("Sort by Price".equals(selected)) {
+            vehicles.sort(Comparator.comparingDouble(car -> {
+                try {
+                    return Double.parseDouble(car.getPrice().replaceAll("[^\\d.]", ""));
+                } catch (NumberFormatException e) {
+                    return Double.MAX_VALUE; // Put invalid or missing prices at the end
+                }
+            }));
         }
         currentPage = 0;
         displayCars();
-    }
+    }    
 
     private void viewFavorites() {
         if (Session.currentUser == null || Session.currentUser.getFavorites().isEmpty()) {
