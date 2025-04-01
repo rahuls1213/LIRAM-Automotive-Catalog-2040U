@@ -198,5 +198,206 @@
         "fuelType": "Electric",
         "imageUrl": "images/r1t.jpg",
         "review": "Futuristic electric truck with off-road capability."
-    }    
+    },    
+    {
+        "make": "Toyota",
+        "model": "Camry",
+        "year": 2020,
+        "fuelType": "Gasoline",
+        "imageUrl": "images/camry.jpg",
+        "review": "Smooth drive and reliable performance."
+    },
+    {
+        "make": "Tesla",
+        "model": "Model Y",
+        "year": 2022,
+        "fuelType": "Electric",
+        "imageUrl": "images/modely.jpg",
+        "review": "Spacious electric SUV with autopilot features."
+    },
+    {
+        "make": "Honda",
+        "model": "Fit",
+        "year": 2019,
+        "fuelType": "Gasoline",
+        "imageUrl": "images/fit.jpg",
+        "review": "Compact yet versatile hatchback."
+    },
+    {
+        "make": "Ford",
+        "model": "Escape",
+        "year": 2021,
+        "fuelType": "Hybrid",
+        "imageUrl": "images/escape.jpg",
+        "review": "A compact SUV with solid fuel efficiency."
+    },
+    {
+        "make": "BMW",
+        "model": "X5",
+        "year": 2022,
+        "fuelType": "Gasoline",
+        "imageUrl": "images/x5.jpg",
+        "review": "Luxury SUV with premium features."
+    },
+    {
+        "make": "Mercedes",
+        "model": "E-Class",
+        "year": 2023,
+        "fuelType": "Hybrid",
+        "imageUrl": "images/eclass.jpg",
+        "review": "Elegant and comfortable executive sedan."
+    },
+    {
+        "make": "Chevrolet",
+        "model": "Silverado",
+        "year": 2023,
+        "fuelType": "Gasoline",
+        "imageUrl": "images/silverado.jpg",
+        "review": "A powerful truck with rugged capabilities."
+    },
+    {
+        "make": "Nissan",
+        "model": "Altima",
+        "year": 2020,
+        "fuelType": "Gasoline",
+        "imageUrl": "images/altima.jpg",
+        "review": "Mid-size sedan with a comfy interior."
+    },
+    {
+        "make": "Hyundai",
+        "model": "Kona",
+        "year": 2023,
+        "fuelType": "Electric",
+        "imageUrl": "images/kona.jpg",
+        "review": "Stylish EV with good range."
+    },
+    {
+        "make": "Volkswagen",
+        "model": "Passat",
+        "year": 2021,
+        "fuelType": "Gasoline",
+        "imageUrl": "images/passat.jpg",
+        "review": "Smooth ride with lots of cabin space."
+    },
+    {
+        "make": "Audi",
+        "model": "Q5",
+        "year": 2022,
+        "fuelType": "Hybrid",
+        "imageUrl": "images/q5.jpg",
+        "review": "Stylish SUV with quattro all-wheel drive."
+    },
+    {
+        "make": "Kia",
+        "model": "Telluride",
+        "year": 2023,
+        "fuelType": "Gasoline",
+        "imageUrl": "images/telluride.jpg",
+        "review": "Spacious family SUV with upscale feel."
+    },
+    {
+        "make": "Subaru",
+        "model": "Forester",
+        "year": 2022,
+        "fuelType": "Gasoline",
+        "imageUrl": "images/forester.jpg",
+        "review": "Reliable AWD crossover with ample cargo space."
+    },
+    {
+        "make": "Mazda",
+        "model": "Mazda3",
+        "year": 2021,
+        "fuelType": "Gasoline",
+        "imageUrl": "images/mazda3.jpg",
+        "review": "Sporty compact car with premium styling."
+    },
+    {
+        "make": "Volvo",
+        "model": "XC90",
+        "year": 2023,
+        "fuelType": "Hybrid",
+        "imageUrl": "images/xc90.jpg",
+        "review": "Family-oriented SUV with luxurious touches."
+    },
+    {
+        "make": "Lexus",
+        "model": "ES 300h",
+        "year": 2022,
+        "fuelType": "Hybrid",
+        "imageUrl": "images/es300h.jpg",
+        "review": "Comfortable hybrid sedan with elegant design."
+    },
+    {
+        "make": "Jeep",
+        "model": "Grand Cherokee",
+        "year": 2023,
+        "fuelType": "Gasoline",
+        "imageUrl": "images/grandcherokee.jpg",
+        "review": "Strong off-road capability and spacious interior."
+    },
+    {
+        "make": "Porsche",
+        "model": "Macan",
+        "year": 2022,
+        "fuelType": "Gasoline",
+        "imageUrl": "images/macan.jpg",
+        "review": "Sporty and luxurious compact SUV."
+    },
+    {
+        "make": "Genesis",
+        "model": "GV70",
+        "year": 2023,
+        "fuelType": "Gasoline",
+        "imageUrl": "images/gv70.jpg",
+        "review": "Luxury compact SUV with bold styling."
+    },
+    {
+        "make": "Acura",
+        "model": "TLX",
+        "year": 2022,
+        "fuelType": "Gasoline",
+        "imageUrl": "images/tlx.jpg",
+        "review": "Performance sedan with premium features."
+    },
+    {
+        "make": "Ram",
+        "model": "1500",
+        "year": 2023,
+        "fuelType": "Gasoline",
+        "imageUrl": "images/ram1500.jpg",
+        "review": "Comfortable ride with high towing capacity."
+    },
+    {
+        "make": "Mini",
+        "model": "Cooper SE",
+        "year": 2021,
+        "fuelType": "Electric",
+        "imageUrl": "images/cooperse.jpg",
+        "review": "Fun EV with iconic design."
+    },
+    {
+        "make": "Lucid",
+        "model": "Air",
+        "year": 2023,
+        "fuelType": "Electric",
+        "imageUrl": "images/air.jpg",
+        "review": "Luxury electric sedan with impressive range."
+    },
+    {
+        "make": "Toyota",
+        "model": "GR86",
+        "year": 2023,
+        "fuelType": "Gasoline",
+        "imageUrl": "images/gr86.jpg",
+        "review": "Lightweight sports coupe with RWD fun."
+    },
+    {
+        "make": "Ford",
+        "model": "Maverick",
+        "year": 2022,
+        "fuelType": "Hybrid",
+        "imageUrl": "images/maverick.jpg",
+        "review": "Compact pickup with great efficiency."
+    }
 ]
+    
