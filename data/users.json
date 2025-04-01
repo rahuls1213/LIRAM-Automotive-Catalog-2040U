@@ -1,15 +1,6 @@
 [
     {
         "favorites": [{
-            "year": 2022,
-            "model": "Corolla",
-            "make": "Toyota"
-        }],
-        "passwordHash": "81dc9bdb52d04dc20036dbd8313ed055",
-        "username": "rahul"
-    },
-    {
-        "favorites": [{
             "year": 2023,
             "model": "Model 3",
             "make": "Tesla"
