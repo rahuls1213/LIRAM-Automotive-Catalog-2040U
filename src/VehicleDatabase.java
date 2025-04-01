@@ -33,7 +33,8 @@ public class VehicleDatabase {
                         obj.getInt("year"),
                         obj.getString("fuelType"),
                         obj.getString("imageUrl"),
-                        obj.getString("review")
+                        obj.getString("review"),
+                        obj.getString("price")
                 ));
             }
             System.out.println("Loaded " + vehicles.size() + " vehicles.");

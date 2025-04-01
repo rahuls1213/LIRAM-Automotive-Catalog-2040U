@@ -5,7 +5,8 @@
         "year": 2022,
         "fuelType": "Gasoline",
         "imageUrl": "images/corolla.jpg",
-        "review": "Reliable and fuel-efficient. A great choice!"
+        "review": "Reliable and fuel-efficient. A great choice!",
+        "price": "$24,450"
     },
     {
         "make": "Tesla",
@@ -13,7 +14,8 @@
         "year": 2023,
         "fuelType": "Electric",
         "imageUrl": "images/model3.jpg",
-        "review": "A fantastic EV with cutting-edge technology."
+        "review": "A fantastic EV with cutting-edge technology.",
+        "price": "$63,790"
     },
     {
         "make": "Honda",
@@ -21,7 +23,8 @@
         "year": 2021,
         "fuelType": "Gasoline",
         "imageUrl": "images/civic.jpg",
-        "review": "A durable sedan with excellent mileage and handling."
+        "review": "A durable sedan with excellent mileage and handling.",
+        "price": "$25,750"
     },
     {
         "make": "Ford",
@@ -29,7 +32,8 @@
         "year": 2022,
         "fuelType": "Gasoline",
         "imageUrl": "images/mustang.jpg",
-        "review": "An American muscle car icon with a powerful engine."
+        "review": "An American muscle car icon with a powerful engine.",
+        "price": "$35,900"
     },
     {
         "make": "BMW",
@@ -37,7 +41,8 @@
         "year": 2023,
         "fuelType": "Gasoline",
         "imageUrl": "images/m3.jpg",
-        "review": "A luxury sports sedan with high performance."
+        "review": "A luxury sports sedan with high performance.",
+        "price": "$115,910"
     },
     {
         "make": "Mercedes",
@@ -45,7 +50,8 @@
         "year": 2022,
         "fuelType": "Hybrid",
         "imageUrl": "images/cclass.jpg",
-        "review": "A stylish luxury sedan with cutting-edge features."
+        "review": "A stylish luxury sedan with cutting-edge features.",
+        "price": "$66,350"
     },
     {
         "make": "Chevrolet",
@@ -53,7 +59,8 @@
         "year": 2021,
         "fuelType": "Gasoline",
         "imageUrl": "images/camaro.jpg",
-        "review": "A bold design with aggressive performance."
+        "review": "A bold design with aggressive performance.",
+        "price": "$48,844"
     },
     {
         "make": "Nissan",
@@ -61,7 +68,8 @@
         "year": 2023,
         "fuelType": "Electric",
         "imageUrl": "images/leaf.jpg",
-        "review": "An affordable and practical electric vehicle."
+        "review": "An affordable and practical electric vehicle.",
+        "price": "$43,27hyu0"
     },
     {
         "make": "Hyundai",
@@ -69,7 +77,8 @@
         "year": 2022,
         "fuelType": "Hybrid",
         "imageUrl": "images/elantra.jpg",
-        "review": "A compact sedan with modern features and hybrid efficiency."
+        "review": "A compact sedan with modern features and hybrid efficiency.",
+        "price": "$22,099"
     },
     {
         "make": "Volkswagen",
@@ -77,7 +86,8 @@
         "year": 2021,
         "fuelType": "Gasoline",
         "imageUrl": "images/golfgti.jpg",
-        "review": "A sporty hatchback with a fun driving experience."
+        "review": "A sporty hatchback with a fun driving experience.",
+        "price": "$36,595"
     },
     {
         "make": "Audi",
@@ -85,7 +95,8 @@
         "year": 2022,
         "fuelType": "Gasoline",
         "imageUrl": "images/a4.jpg",
-        "review": "A refined European sedan with advanced features."
+        "review": "A refined European sedan with advanced features.",
+        "price": "$47,200"
     },
     {
         "make": "Kia",
@@ -93,7 +104,8 @@
         "year": 2023,
         "fuelType": "Electric",
         "imageUrl": "images/ev6.jpg",
-        "review": "Stylish electric crossover with impressive range."
+        "review": "Stylish electric crossover with impressive range.",
+        "price": "$64,995"
     },
     {
         "make": "Subaru",
@@ -101,7 +113,8 @@
         "year": 2022,
         "fuelType": "Gasoline",
         "imageUrl": "images/outback.jpg",
-        "review": "Great for adventurous drivers with AWD and comfort."
+        "review": "Great for adventurous drivers with AWD and comfort.",
+        "price": "$39,595"
     },
     {
         "make": "Mazda",
@@ -109,7 +122,8 @@
         "year": 2023,
         "fuelType": "Gasoline",
         "imageUrl": "images/cx5.jpg",
-        "review": "Sporty crossover with excellent handling and interior quality."
+        "review": "Sporty crossover with excellent handling and interior quality.",
+        "price": "$43,250"
     },
     {
         "make": "Volvo",
@@ -117,7 +131,8 @@
         "year": 2023,
         "fuelType": "Hybrid",
         "imageUrl": "images/xc60.jpg",
-        "review": "Safe and luxurious SUV with hybrid efficiency."
+        "review": "Safe and luxurious SUV with hybrid efficiency.",
+        "price": "$61,600"
     },
     {
         "make": "Lexus",
@@ -125,7 +140,8 @@
         "year": 2022,
         "fuelType": "Hybrid",
         "imageUrl": "images/rx350.jpg",
-        "review": "A smooth ride with reliable hybrid performance."
+        "review": "A smooth ride with reliable hybrid performance.",
+        "price": "$60,500"
     },
     {
         "make": "Jeep",
@@ -133,7 +149,8 @@
         "year": 2023,
         "fuelType": "Gasoline",
         "imageUrl": "images/wrangler.jpg",
-        "review": "An off-road beast with iconic rugged styling."
+        "review": "An off-road beast with iconic rugged styling.",
+        "price": "$56,095"
     },
     {
         "make": "Porsche",
@@ -141,7 +158,8 @@
         "year": 2023,
         "fuelType": "Electric",
         "imageUrl": "images/taycan.jpg",
-        "review": "Electric performance car with thrilling speed."
+        "review": "Electric performance car with thrilling speed.",
+        "price": "$154,700"
     },
     {
         "make": "Genesis",
@@ -149,7 +167,8 @@
         "year": 2022,
         "fuelType": "Gasoline",
         "imageUrl": "images/g80.jpg",
-        "review": "Luxury and value combined in a premium sedan."
+        "review": "Luxury and value combined in a premium sedan.",
+        "price": "$73,500"
     },
     {
         "make": "Acura",
@@ -157,7 +176,8 @@
         "year": 2023,
         "fuelType": "Gasoline",
         "imageUrl": "images/integra.jpg",
-        "review": "A revived classic with sporty appeal."
+        "review": "A revived classic with sporty appeal.",
+        "price": "$42,550"
     },
     {
         "make": "Toyota",
@@ -165,7 +185,8 @@
         "year": 2022,
         "fuelType": "Hybrid",
         "imageUrl": "images/priusprime.jpg",
-        "review": "One of the most fuel-efficient hybrids around."
+        "review": "One of the most fuel-efficient hybrids around.",
+        "price": "$35,750"
     },
     {
         "make": "Ford",
@@ -173,7 +194,8 @@
         "year": 2023,
         "fuelType": "Electric",
         "imageUrl": "images/f150lightning.jpg",
-        "review": "America’s top truck goes electric with power and utility."
+        "review": "America’s top truck goes electric with power and utility.",
+        "price": "$69,000"
     },
     {
         "make": "Chevrolet",
@@ -181,7 +203,8 @@
         "year": 2023,
         "fuelType": "Electric",
         "imageUrl": "images/bolteuv.jpg",
-        "review": "Compact electric SUV with solid range and value."
+        "review": "Compact electric SUV with solid range and value.",
+        "price": "$42,550"
     },
     {
         "make": "Honda",
@@ -189,7 +212,8 @@
         "year": 2022,
         "fuelType": "Hybrid",
         "imageUrl": "images/accordhybrid.jpg",
-        "review": "Blends comfort, efficiency, and classic sedan style."
+        "review": "Blends comfort, efficiency, and classic sedan style.",
+        "price": "$44,090"
     },
     {
         "make": "Rivian",
@@ -197,7 +221,8 @@
         "year": 2023,
         "fuelType": "Electric",
         "imageUrl": "images/r1t.jpg",
-        "review": "Futuristic electric truck with off-road capability."
+        "review": "Futuristic electric truck with off-road capability.",
+        "price": "$78,800"
     },    
     {
         "make": "Toyota",
@@ -205,7 +230,8 @@
         "year": 2020,
         "fuelType": "Gasoline",
         "imageUrl": "images/camry.jpg",
-        "review": "Smooth drive and reliable performance."
+        "review": "Smooth drive and reliable performance.",
+        "price": "$31,550"
     },
     {
         "make": "Tesla",
@@ -213,7 +239,8 @@
         "year": 2022,
         "fuelType": "Electric",
         "imageUrl": "images/modely.jpg",
-        "review": "Spacious electric SUV with autopilot features."
+        "review": "Spacious electric SUV with autopilot features.",
+        "price": "$87,500"
     },
     {
         "make": "Honda",
@@ -221,7 +248,8 @@
         "year": 2019,
         "fuelType": "Gasoline",
         "imageUrl": "images/fit.jpg",
-        "review": "Compact yet versatile hatchback."
+        "review": "Compact yet versatile hatchback.",
+        "price": "$18,990"
     },
     {
         "make": "Ford",
@@ -229,7 +257,8 @@
         "year": 2021,
         "fuelType": "Hybrid",
         "imageUrl": "images/escape.jpg",
-        "review": "A compact SUV with solid fuel efficiency."
+        "review": "A compact SUV with solid fuel efficiency.",
+        "price": "$30,649"
     },
     {
         "make": "BMW",
@@ -237,7 +266,8 @@
         "year": 2022,
         "fuelType": "Gasoline",
         "imageUrl": "images/x5.jpg",
-        "review": "Luxury SUV with premium features."
+        "review": "Luxury SUV with premium features.",
+        "price": "$94,800"
     },
     {
         "make": "Mercedes",
@@ -245,7 +275,8 @@
         "year": 2023,
         "fuelType": "Hybrid",
         "imageUrl": "images/eclass.jpg",
-        "review": "Elegant and comfortable executive sedan."
+        "review": "Elegant and comfortable executive sedan.",
+        "price": "$95,100"
     },
     {
         "make": "Chevrolet",
@@ -253,7 +284,8 @@
         "year": 2023,
         "fuelType": "Gasoline",
         "imageUrl": "images/silverado.jpg",
-        "review": "A powerful truck with rugged capabilities."
+        "review": "A powerful truck with rugged capabilities.",
+        "price": "$55,200"
     },
     {
         "make": "Nissan",
@@ -261,7 +293,8 @@
         "year": 2020,
         "fuelType": "Gasoline",
         "imageUrl": "images/altima.jpg",
-        "review": "Mid-size sedan with a comfy interior."
+        "review": "Mid-size sedan with a comfy interior.",
+        "price": "$33,100"
     },
     {
         "make": "Hyundai",
@@ -269,7 +302,8 @@
         "year": 2023,
         "fuelType": "Electric",
         "imageUrl": "images/kona.jpg",
-        "review": "Stylish EV with good range."
+        "review": "Stylish EV with good range.",
+        "price": "$32,390"
     },
     {
         "make": "Volkswagen",
@@ -277,7 +311,8 @@
         "year": 2021,
         "fuelType": "Gasoline",
         "imageUrl": "images/passat.jpg",
-        "review": "Smooth ride with lots of cabin space."
+        "review": "Smooth ride with lots of cabin space.",
+        "price": "$34,495"
     },
     {
         "make": "Audi",
@@ -285,7 +320,8 @@
         "year": 2022,
         "fuelType": "Hybrid",
         "imageUrl": "images/q5.jpg",
-        "review": "Stylish SUV with quattro all-wheel drive."
+        "review": "Stylish SUV with quattro all-wheel drive.",
+        "price": "$60,450"
     },
     {
         "make": "Kia",
@@ -293,7 +329,8 @@
         "year": 2023,
         "fuelType": "Gasoline",
         "imageUrl": "images/telluride.jpg",
-        "review": "Spacious family SUV with upscale feel."
+        "review": "Spacious family SUV with upscale feel.",
+        "price": "$55,195"
     },
     {
         "make": "Subaru",
@@ -301,7 +338,8 @@
         "year": 2022,
         "fuelType": "Gasoline",
         "imageUrl": "images/forester.jpg",
-        "review": "Reliable AWD crossover with ample cargo space."
+        "review": "Reliable AWD crossover with ample cargo space.",
+        "price": "$33,095"
     },
     {
         "make": "Mazda",
@@ -309,7 +347,8 @@
         "year": 2021,
         "fuelType": "Gasoline",
         "imageUrl": "images/mazda3.jpg",
-        "review": "Sporty compact car with premium styling."
+        "review": "Sporty compact car with premium styling.",
+        "price": "$34,100"
     },
     {
         "make": "Volvo",
@@ -317,7 +356,8 @@
         "year": 2023,
         "fuelType": "Hybrid",
         "imageUrl": "images/xc90.jpg",
-        "review": "Family-oriented SUV with luxurious touches."
+        "review": "Family-oriented SUV with luxurious touches.",
+        "price": "$76,700"
     },
     {
         "make": "Lexus",
@@ -325,7 +365,8 @@
         "year": 2022,
         "fuelType": "Hybrid",
         "imageUrl": "images/es300h.jpg",
-        "review": "Comfortable hybrid sedan with elegant design."
+        "review": "Comfortable hybrid sedan with elegant design.",
+        "price": "$49,900"
     },
     {
         "make": "Jeep",
@@ -333,7 +374,8 @@
         "year": 2023,
         "fuelType": "Gasoline",
         "imageUrl": "images/grandcherokee.jpg",
-        "review": "Strong off-road capability and spacious interior."
+        "review": "Strong off-road capability and spacious interior.",
+        "price": "$63,545"
     },
     {
         "make": "Porsche",
@@ -341,7 +383,8 @@
         "year": 2022,
         "fuelType": "Gasoline",
         "imageUrl": "images/macan.jpg",
-        "review": "Sporty and luxurious compact SUV."
+        "review": "Sporty and luxurious compact SUV.",
+        "price": "$70,600"
     },
     {
         "make": "Genesis",
@@ -349,7 +392,8 @@
         "year": 2023,
         "fuelType": "Gasoline",
         "imageUrl": "images/gv70.jpg",
-        "review": "Luxury compact SUV with bold styling."
+        "review": "Luxury compact SUV with bold styling.",
+        "price": "$61,500"
     },
     {
         "make": "Acura",
@@ -357,7 +401,8 @@
         "year": 2022,
         "fuelType": "Gasoline",
         "imageUrl": "images/tlx.jpg",
-        "review": "Performance sedan with premium features."
+        "review": "Performance sedan with premium features.",
+        "price": "$53,400"
     },
     {
         "make": "Ram",
@@ -365,7 +410,8 @@
         "year": 2023,
         "fuelType": "Gasoline",
         "imageUrl": "images/ram1500.jpg",
-        "review": "Comfortable ride with high towing capacity."
+        "review": "Comfortable ride with high towing capacity.",
+        "price": "$54,045"
     },
     {
         "make": "Mini",
@@ -373,7 +419,8 @@
         "year": 2021,
         "fuelType": "Electric",
         "imageUrl": "images/cooperse.jpg",
-        "review": "Fun EV with iconic design."
+        "review": "Fun EV with iconic design.",
+        "price": "$27,790"
     },
     {
         "make": "Lucid",
@@ -381,7 +428,8 @@
         "year": 2023,
         "fuelType": "Electric",
         "imageUrl": "images/air.jpg",
-        "review": "Luxury electric sedan with impressive range."
+        "review": "Luxury electric sedan with impressive range.",
+        "price": "$121,500"
     },
     {
         "make": "Toyota",
@@ -389,7 +437,8 @@
         "year": 2023,
         "fuelType": "Gasoline",
         "imageUrl": "images/gr86.jpg",
-        "review": "Lightweight sports coupe with RWD fun."
+        "review": "Lightweight sports coupe with RWD fun.",
+        "price": "$34,490"
     },
     {
         "make": "Ford",
@@ -397,7 +446,8 @@
         "year": 2022,
         "fuelType": "Hybrid",
         "imageUrl": "images/maverick.jpg",
-        "review": "Compact pickup with great efficiency."
+        "review": "Compact pickup with great efficiency.",
+        "price": "$30,350"
     }
 ]
     

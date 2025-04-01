@@ -125,11 +125,15 @@ public class CarViewer {
             JLabel yearFuel = new JLabel("Year: " + car.getYear() + " | Fuel: " + car.getFuelType());
             yearFuel.setFont(BODY_FONT);
             yearFuel.setForeground(TEXT_SECONDARY);
+            JLabel priceLabel = new JLabel("Price: " + car.getPrice());
+            priceLabel.setFont(BODY_FONT);
+            priceLabel.setForeground(TEXT_SECONDARY);
             JLabel review = new JLabel("<html><i>" + car.getReview() + "</i></html>");
             review.setFont(BODY_FONT);
             review.setForeground(TEXT_SECONDARY);
             details.add(title);
             details.add(yearFuel);
+            details.add(priceLabel);
             details.add(review);
             card.add(details, BorderLayout.CENTER);
 
