@@ -26,6 +26,7 @@ public class CarViewer {
     private final Color BUTTON_TEXT = Color.WHITE;
     private final Font HEADER_FONT = new Font("SansSerif", Font.BOLD, 18);
     private final Font BODY_FONT = new Font("SansSerif", Font.PLAIN, 14);
+    private final Color NAVY_DARK = new Color(26, 26, 64);  // #1A1A40
 
     public CarViewer(List<Vehicle> vehicles) {
         this.vehicles = vehicles;
@@ -50,12 +51,22 @@ public class CarViewer {
         themeToggle.addActionListener(e -> toggleTheme(themeToggle));
 
         searchField = new JTextField(12);
+        searchField.setFont(BODY_FONT);
+        searchField.setBackground(NAVY_DARK);
+        searchField.setForeground(Color.WHITE);
+        searchField.setCaretColor(Color.WHITE);
+        searchField.setBorder(BorderFactory.createEmptyBorder(6, 10, 6, 10));
+
         searchButton = createButton("Search");
         homeButton = createButton("Home");
         viewFavoritesButton = createButton("View Favorites");
         loginButton = createButton("Login");
         sortDropdown = new JComboBox<>(new String[]{"Sort by Make", "Sort by Year", "Sort by Price"});
         sortDropdown.setFont(BODY_FONT);
+        sortDropdown.setBackground(NAVY_DARK);
+        sortDropdown.setForeground(Color.WHITE);
+        sortDropdown.setFocusable(false);
+        sortDropdown.setBorder(BorderFactory.createEmptyBorder(6, 10, 6, 10));
 
         controlPanel.add(themeToggle);
         controlPanel.add(new JLabel("Search:"));
