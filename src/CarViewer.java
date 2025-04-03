@@ -4,20 +4,44 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
+/**
+ * CarViewer is the main user interface for browsing, searching, sorting,
+ * favoriting, and comparing vehicles within the automotive catalog system.
+ *
+ * This class fulfills multiple high-priority user stories such as:
+ * - Browsing and viewing car listings
+ * - Searching and filtering by model/make
+ * - Sorting cars by attributes
+ * - Adding/removing cars to a favorites list
+ * - Comparing two vehicles side by side
+ * - Switching between light/dark UI themes
+ *
+ * UI elements are styled to match the branding (beige/navy theme),
+ * and functionality aligns with the project planning documents and agile iteration goals.
+ */
 public class CarViewer {
+    // Frame and panel references
     private JFrame frame;
     private JPanel carPanel;
     private JPanel controlPanel, buttonPanel;
+
+    // Search, sorting, login, and page navigation components
     private JTextField searchField;
     private JComboBox<String> sortDropdown;
     private JButton nextPageButton, prevPageButton, searchButton, homeButton, loginButton, viewFavoritesButton;
+    
+    // Vehicle data
     private List<Vehicle> vehicles;
     private List<Vehicle> originalVehicles;
+
+    // Pagination state
     private int currentPage = 0;
     private final int CARS_PER_PAGE = 3;
+
+    // Theme toggle
     private boolean isDarkMode = false;
 
-    // Theme Colors
+    // Theme Constants
     private final Color BACKGROUND_COLOR = new Color(245, 245, 220); // Beige
     private final Color CARD_COLOR = Color.WHITE;
     private final Color TEXT_PRIMARY = new Color(26, 26, 64); // Navy
@@ -28,10 +52,17 @@ public class CarViewer {
     private final Font BODY_FONT = new Font("SansSerif", Font.PLAIN, 14);
     private final Color NAVY_DARK = new Color(26, 26, 64);  // #1A1A40
 
+    /**
+     * Constructs the CarViewer window and initializes the user interface layout,
+     * buttons, search/sort features, and event listeners.
+     *
+     * @param vehicles the list of vehicle objects to display initially
+     */
     public CarViewer(List<Vehicle> vehicles) {
         this.vehicles = vehicles;
         this.originalVehicles = new ArrayList<>(vehicles);
 
+        // Frame setup
         frame = new JFrame("Car Viewer");
         frame.setSize(900, 600);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -53,7 +84,6 @@ public class CarViewer {
         themeToggle.setOpaque(true);
         themeToggle.setBorderPainted(false);
         themeToggle.addActionListener(e -> toggleTheme(themeToggle));
-
 
         searchField = new JTextField(12);
         searchField.setFont(BODY_FONT);
@@ -134,6 +164,10 @@ public class CarViewer {
         frame.setLocationRelativeTo(null);
     }
 
+    /**
+     * Displays the current set of vehicles in paginated card format using a GridBag layout.
+     * Each card includes the vehicle's image, info, and buttons to favorite or compare.
+     */
     private void displayCars() {
         carPanel.removeAll();
         int start = currentPage * CARS_PER_PAGE;
@@ -143,8 +177,8 @@ public class CarViewer {
             Vehicle car = vehicles.get(i);
 
             JPanel card = new JPanel(new BorderLayout(10, 10));
-            // card.setMaximumSize(new Dimension(850, 160));
-            card.setPreferredSize(new Dimension(0, 160)); // width = auto-grow
+    
+            card.setPreferredSize(new Dimension(0, 160));
             card.setBackground(CARD_COLOR);
             card.setBorder(BorderFactory.createCompoundBorder(
                     BorderFactory.createLineBorder(new Color(220, 220, 220), 1, true),
@@ -189,7 +223,7 @@ public class CarViewer {
 
             GridBagConstraints gbc = new GridBagConstraints();
             gbc.gridx = 0;
-            gbc.gridy = i - start; // row index
+            gbc.gridy = i - start; 
             gbc.weightx = 1;
             gbc.fill = GridBagConstraints.HORIZONTAL;
             gbc.insets = new Insets(10, 0, 10, 0);
@@ -201,6 +235,12 @@ public class CarViewer {
         carPanel.repaint();
     }
 
+    /**
+     * Utility method to create a reusable styled JButton with consistent look and feel.
+     *
+     * @param text the button label
+     * @return JButton styled for the catalog's theme
+     */
     private JButton createButton(String text) {
         JButton btn = new JButton(text);
         btn.setBackground(BUTTON_BG);
@@ -211,6 +251,12 @@ public class CarViewer {
         return btn;
     }
 
+    /**
+     * Toggles between light and dark themes and updates background colors accordingly.
+     * Also restyles the toggle button itself.
+     *
+     * @param toggleButton the UI toggle button that triggered the theme switch
+     */
     private void toggleTheme(JToggleButton toggleButton) {
         isDarkMode = !isDarkMode;
     
@@ -224,8 +270,8 @@ public class CarViewer {
     
         // Fully restyle the toggle button
         toggleButton.setText(isDarkMode ? "Light Mode" : "Dark Mode");
-        toggleButton.setBackground(BUTTON_BG); // Always theme blue
-        toggleButton.setForeground(BUTTON_TEXT); // Always white
+        toggleButton.setBackground(BUTTON_BG); 
+        toggleButton.setForeground(BUTTON_TEXT); 
         toggleButton.setFont(BODY_FONT);
         toggleButton.setFocusPainted(false);
         toggleButton.setContentAreaFilled(true);
@@ -237,13 +283,22 @@ public class CarViewer {
         displayCars();
     }
         
-
+    /**
+     * Changes the current page of displayed cars by a given offset.
+     * Ensures page stays within valid bounds.
+     *
+     * @param delta the page increment (positive or negative)
+     */
     private void changePage(int delta) {
         int maxPage = (vehicles.size() - 1) / CARS_PER_PAGE;
         currentPage = Math.max(0, Math.min(maxPage, currentPage + delta));
         displayCars();
     }
 
+    /**
+     * Filters the vehicles list based on the user query entered in the search bar.
+     * Matches vehicle make or model in a case-insensitive manner.
+     */
     private void searchCars() {
         String query = searchField.getText().toLowerCase();
         vehicles = originalVehicles.stream()
@@ -254,12 +309,21 @@ public class CarViewer {
         displayCars();
     }
 
+    /**
+     * Resets the car display to the original full vehicle list and goes to the first page.
+     */
     private void resetToHomePage() {
         vehicles = new ArrayList<>(originalVehicles);
         currentPage = 0;
         displayCars();
     }
 
+    /**
+     * Sorts the displayed vehicles based on user-selected criteria:
+     * - Make (alphabetically)
+     * - Year (ascending)
+     * - Price (numerically, parsed from string)
+     */
     private void sortCars() {
         String selected = (String) sortDropdown.getSelectedItem();
         if ("Sort by Make".equals(selected)) {
@@ -279,6 +343,10 @@ public class CarViewer {
         displayCars();
     }    
 
+    /**
+     * Displays only the current user's favorite vehicles.
+     * If not logged in or no favorites exist, shows an alert instead.
+     */
     private void viewFavorites() {
         if (Session.currentUser == null || Session.currentUser.getFavorites().isEmpty()) {
             JOptionPane.showMessageDialog(frame, "No favorite vehicles.");
@@ -289,6 +357,12 @@ public class CarViewer {
         displayCars();
     }
 
+    /**
+     * Adds or removes a vehicle from the current user's favorites list.
+     * If not logged in, prompts the user to log in first.
+     *
+     * @param vehicle the vehicle to add or remove from favorites
+     */
     private void addToFavorites(Vehicle vehicle) {
         if (Session.currentUser == null) {
             JOptionPane.showMessageDialog(frame, "Please log in to use favorites.");
@@ -306,6 +380,12 @@ public class CarViewer {
         displayCars();
     }
 
+    /**
+     * Opens a comparison dialog between the selected car and another user-selected car.
+     * Prompts the user to select a second car via dropdown dialog.
+     *
+     * @param currentCar the car currently being viewed or interacted with
+     */
     private void showComparison(Vehicle currentCar) {
         List<String> options = new ArrayList<>();
         List<Vehicle> candidates = new ArrayList<>();
@@ -329,6 +409,11 @@ public class CarViewer {
         }
     }
 
+    /**
+     * Returns the appropriate text label for the login/logout button based on session state.
+     *
+     * @return "Login" if no user is logged in, otherwise "Logout"
+     */
     private String getLoginButtonText() {
         return Session.currentUser == null ? "Login" : "Logout";
     }    

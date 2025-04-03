@@ -1,9 +1,22 @@
 import javax.swing.*;
 import java.awt.*;
 
+
+/**
+ * CarComparisonWindow is a UI window that displays a side-by-side visual and textual 
+ * comparison between two selected vehicles. 
+ *
+ * Features displayed:
+ * - Car image
+ * - Make, model, year
+ * - Fuel type
+ * - User review
+ * 
+ * This frame is launched from the CarViewer UI upon comparison request.
+ */
 public class CarComparisonWindow extends JFrame {
 
-    // Light mode theme colors
+    // Theme colors consistent with the catalog's UI branding
     private final Color BACKGROUND_COLOR = new Color(245, 245, 220); // Beige
     private final Color CARD_COLOR = Color.WHITE;
     private final Color TEXT_PRIMARY = new Color(26, 26, 64); // Navy
@@ -11,19 +24,32 @@ public class CarComparisonWindow extends JFrame {
     private final Font HEADER_FONT = new Font("SansSerif", Font.BOLD, 20);
     private final Font BODY_FONT = new Font("SansSerif", Font.PLAIN, 14);
 
+    /**
+     * Constructs a new CarComparisonWindow to compare two vehicles.
+     *
+     * @param car1 the first vehicle to compare
+     * @param car2 the second vehicle to compare
+     */
     public CarComparisonWindow(Vehicle car1, Vehicle car2) {
         setTitle("Car Comparison");
         setSize(1100, 650);
         setLayout(new GridLayout(1, 2, 10, 0)); // side-by-side layout with spacing
         getContentPane().setBackground(BACKGROUND_COLOR);
 
+        // Add the panels for both vehicles
         add(createCarPanel(car1));
         add(createCarPanel(car2));
 
-        setLocationRelativeTo(null); // Center on screen
+        setLocationRelativeTo(null); // Center window on screen
         setVisible(true);
     }
 
+    /**
+     * Creates a styled panel for a single vehicle's details including image, specs, and review.
+     *
+     * @param car the vehicle whose details to render
+     * @return JPanel component with vehicle content
+     */
     private JPanel createCarPanel(Vehicle car) {
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -33,7 +59,7 @@ public class CarComparisonWindow extends JFrame {
                 BorderFactory.createEmptyBorder(20, 20, 20, 20)
         ));
 
-        // Image
+        // Vehicle Image
         JLabel imageLabel = new JLabel();
         imageLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         ImageIcon icon = new ImageIcon(new ImageIcon(car.getImageUrl()).getImage()

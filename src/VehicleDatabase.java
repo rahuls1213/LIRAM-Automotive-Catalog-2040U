@@ -7,12 +7,21 @@ import java.util.ArrayList;
 import java.util.List;
 
  /**
- * The VehicleDatabase class is responsible for loading vehicle data 
- * from a JSON file and providing access to the list of vehicles.
+ * VehicleDatabase handles reading, storing, and retrieving all vehicle listings
+ * from a local JSON file ("cars.json") into memory.
+ *
+ * This static class provides:
+ * - A method to load vehicle data at startup  
+ * - A method to retrieve all vehicles  
+ * - A method to search for a vehicle by make, model, and year  
+ *
+ * Used by {@link CarViewer}, {@link LandingPage}, and {@link UserDatabase}
+ * to provide data for rendering, searching, and managing favorites.
  */
 public class VehicleDatabase {
-    private static final String FILE_PATH = "data/cars.json";
-    private static List<Vehicle> vehicles = new ArrayList<>();
+
+    private static final String FILE_PATH = "data/cars.json"; // Source JSON file
+    private static List<Vehicle> vehicles = new ArrayList<>(); // In-memory Storage
 
     /**
     * Loads vehicle data from a JSON file and stores it in the list.
@@ -46,12 +55,21 @@ public class VehicleDatabase {
     /**
     * Returns the list of vehicles loaded from the JSON file.
     * 
-    * @return List of Vehicle objects.
+    * @return List of {@link Vehicle} objects
     */
     public static List<Vehicle> getVehicles() {
         return vehicles;
     }
 
+    /**
+     * Searches for a specific vehicle by make, model, and year.
+     * The search is case-insensitive for make/model.
+     *
+     * @param make  the vehicle make (e.g., "Honda")
+     * @param model the vehicle model (e.g., "Civic")
+     * @param year  the vehicle year
+     * @return the matching {@link Vehicle}, or null if not found
+     */
     public static Vehicle findVehicle(String make, String model, int year) {
         for (Vehicle v : vehicles) {
             if (v.getMake().equalsIgnoreCase(make) &&
