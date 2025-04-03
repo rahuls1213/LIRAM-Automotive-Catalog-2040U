@@ -44,11 +44,16 @@ public class CarViewer {
 
         JToggleButton themeToggle = new JToggleButton("Dark Mode");
         themeToggle.setFont(BODY_FONT);
-        themeToggle.setBackground(Color.WHITE);
-        themeToggle.setForeground(TEXT_PRIMARY);
+        themeToggle.setBackground(BUTTON_BG);
+        themeToggle.setForeground(BUTTON_TEXT);
         themeToggle.setFocusPainted(false);
-        themeToggle.setBorder(BorderFactory.createLineBorder(TEXT_PRIMARY));
+        themeToggle.setBorder(BorderFactory.createEmptyBorder(6, 14, 6, 14));
+        themeToggle.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        themeToggle.setContentAreaFilled(true);
+        themeToggle.setOpaque(true);
+        themeToggle.setBorderPainted(false);
         themeToggle.addActionListener(e -> toggleTheme(themeToggle));
+
 
         searchField = new JTextField(12);
         searchField.setFont(BODY_FONT);
@@ -60,7 +65,8 @@ public class CarViewer {
         searchButton = createButton("Search");
         homeButton = createButton("Home");
         viewFavoritesButton = createButton("View Favorites");
-        loginButton = createButton("Login");
+        loginButton = createButton(getLoginButtonText());
+
         sortDropdown = new JComboBox<>(new String[]{"Sort by Make", "Sort by Year", "Sort by Price"});
         sortDropdown.setFont(BODY_FONT);
         sortDropdown.setBackground(NAVY_DARK);
@@ -76,6 +82,28 @@ public class CarViewer {
         controlPanel.add(viewFavoritesButton);
         controlPanel.add(sortDropdown);
         controlPanel.add(loginButton);
+
+        loginButton.addActionListener(e -> {
+            if (Session.currentUser == null) {
+                boolean success = LoginScreen.prompt();
+                if (success) {
+                    JOptionPane.showMessageDialog(frame, "You are now logged in as " + Session.currentUser.getUsername());
+                } else {
+                    JOptionPane.showMessageDialog(frame, "Login failed. Try again.");
+                    return; // Don't refresh UI
+                }
+            } else {
+                int confirm = JOptionPane.showConfirmDialog(frame, "Log out from " + Session.currentUser.getUsername() + "?", "Confirm Logout", JOptionPane.YES_NO_OPTION);
+                if (confirm == JOptionPane.YES_OPTION) {
+                    Session.currentUser = null;
+                    JOptionPane.showMessageDialog(frame, "You have been logged out.");
+                } else {
+                    return; // Don't refresh UI
+                }
+            }
+            loginButton.setText(getLoginButtonText());
+            displayCars(); // Refresh UI to update favorites, etc.
+        });        
 
         frame.add(controlPanel, BorderLayout.NORTH);
 
@@ -185,13 +213,30 @@ public class CarViewer {
 
     private void toggleTheme(JToggleButton toggleButton) {
         isDarkMode = !isDarkMode;
+    
+        Color newBg = isDarkMode ? Color.DARK_GRAY : BACKGROUND_COLOR;
+    
+        // Update app backgrounds
+        frame.getContentPane().setBackground(newBg);
+        controlPanel.setBackground(newBg);
+        buttonPanel.setBackground(newBg);
+        carPanel.setBackground(newBg);
+    
+        // Fully restyle the toggle button
         toggleButton.setText(isDarkMode ? "Light Mode" : "Dark Mode");
-        frame.getContentPane().setBackground(isDarkMode ? Color.DARK_GRAY : BACKGROUND_COLOR);
-        controlPanel.setBackground(isDarkMode ? Color.DARK_GRAY : BACKGROUND_COLOR);
-        buttonPanel.setBackground(isDarkMode ? Color.DARK_GRAY : BACKGROUND_COLOR);
-        carPanel.setBackground(isDarkMode ? Color.DARK_GRAY : BACKGROUND_COLOR);
+        toggleButton.setBackground(BUTTON_BG); // Always theme blue
+        toggleButton.setForeground(BUTTON_TEXT); // Always white
+        toggleButton.setFont(BODY_FONT);
+        toggleButton.setFocusPainted(false);
+        toggleButton.setContentAreaFilled(true);
+        toggleButton.setOpaque(true);
+        toggleButton.setBorderPainted(false);
+        toggleButton.setBorder(BorderFactory.createEmptyBorder(6, 14, 6, 14));
+        toggleButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+    
         displayCars();
     }
+        
 
     private void changePage(int delta) {
         int maxPage = (vehicles.size() - 1) / CARS_PER_PAGE;
@@ -283,4 +328,8 @@ public class CarViewer {
             new CarComparisonWindow(currentCar, candidates.get(index));
         }
     }
+
+    private String getLoginButtonText() {
+        return Session.currentUser == null ? "Login" : "Logout";
+    }    
 }
