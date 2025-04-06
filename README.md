@@ -139,7 +139,7 @@ This file contains:
 ## Demonstration of Functionality
 
 A short walkthrough video is available at:  
-[Demo Video](https://youtu.be/https://youtu.be/lasfK1eWVCg)
+[Demo Video](https://youtu.be/lasfK1eWVCg)
 
 The demo includes:
 - Application startup and login/register/guest flow  
