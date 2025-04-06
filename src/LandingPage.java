@@ -88,7 +88,7 @@ public class LandingPage {
                 frame.dispose();
                 launchApp();
             } else {
-                JOptionPane.showMessageDialog(null, "❌ Login failed. Try again.");
+                JOptionPane.showMessageDialog(null, "Login failed. Try again.");
             }
         });
 
