@@ -20,7 +20,7 @@ public class VehicleDatabaseTest {
     @Test
     public void testVehicleListNotEmpty() {
         assertNotNull(vehicles, "Vehicle list should not be null");
-        assertEquals(10, vehicles.size(), "Vehicle list should contain 10 vehicles");
+        assertEquals(50, vehicles.size(), "Vehicle list should contain 50 vehicles");
     }
 
     @Test
